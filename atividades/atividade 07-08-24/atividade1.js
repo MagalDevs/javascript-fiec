@@ -5,30 +5,31 @@ function main(){
     let menor = numero
     if(numero > 999 || numero < 1){
         alert("Número inválido")
-    }
-    while(numero != 999 && numero >= 1 && numero < 999){
-        let numero = parseInt((prompt("Digite um número(digite 999 para parar)")));
-        console.log(numero);
+    } else {
         soma = numero
         contador = 1
-        if (numero>999 || numero<1){
-            alert("Número inválido")
-            break
-        } else if (numero == 999){
-            let divisao = soma / contador
-            alert("")
-            break
-        } else{
-            soma += numero
-            contador + 1
-            if(numero > maior){
-                maior = numero
-            }else if(numero < menor){
-                menor = numero
+        while(numero != 999 && numero >= 1 && numero < 999){
+            let numero = parseInt((prompt("Digite um número(digite 999 para parar)")));
+            console.log(numero);
+            if (numero>999 || numero<1){
+                alert("Número inválido")
+                break
+            } else if (numero == 999){
+                let divisao = soma / contador
+                alert(`Maior número: ${maior}\nMenor número: ${menor}\nSoma: ${soma}\nMédia: ${divisao}`)
+                break
+            } else{
+                soma = numero + soma
+                contador = 1 + contador
+                if(numero > maior){
+                    maior = numero
+                }else if(numero < menor){
+                    menor = numero
+                }
+    
             }
-
+            
         }
-        
     }
     
 }
