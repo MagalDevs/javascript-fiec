@@ -33,12 +33,12 @@ let listaAutomovel = [];
 
 function infoautomovel(){
     while(true){
-        let infoNome = prompt("Digite o nome do carro");
+        let infoNome = prompt("Digite o nome do Automóvel");
         if(infoNome == ""){
             break;
         }else{
-            let infoMarca = prompt("Digite a marca do carro");
-            let infoValor = prompt("Digite o valor do carro");
+            let infoMarca = prompt("Digite a marca do Automóvel");
+            let infoValor = prompt("Digite o valor do Automóvel");
             let infoValorFloat;
             if(infoMarca == ""){
                 infoMarca = undefined;
@@ -54,22 +54,39 @@ function infoautomovel(){
         }
     }
     
-    console.log(listaAutomovel)
+    console.log(listaAutomovel);
 }
 
 function listaCompleta(){
     console.log("Lista Completa:")
     listaAutomovel.forEach((automovel) => {
-        console.log(automovel.nome);
-        console.log(automovel.marca);
-        console.log(automovel.valor);
+        console.log(`Nome: ${automovel.nome}`);
+        console.log(`Marca: ${automovel.marca}`);
+        console.log("valor: R$" + automovel.valor);
     })
 }
 
 function ListaNome(){
-    console.log("Lista Nome:")
+    console.log("Lista Nome:");
+    let listaNomeAuto = listaAutomovel.map(automovel => automovel.nome);
+    console.log(listaNomeAuto);
 }
+
+function AutosMenorQue1000(){
+    console.log("Valores Menores que 1000:");
+    let listaValorMenorQue1000 = listaAutomovel.filter((automovel) => automovel.valor < 1000);
+    console.log(listaValorMenorQue1000);
+}
+
+function soma(){
+    let somaValores = listaAutomovel.reduce((soma, automovel) => soma += automovel.valor, 0);
+    console.log(`Valor total R$ ${somaValores}`);
+}
+
 infoautomovel();
 listaCompleta();
+ListaNome();
+AutosMenorQue1000();
+soma();
 
 
