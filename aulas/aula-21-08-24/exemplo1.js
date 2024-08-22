@@ -1,56 +1,33 @@
-class Automovel{
-    #marca;
-    #modelo;
-    #valor;
-    #cor;
-    #placa
-    #rodas;
+// import Automovel from "./model/automovel.js";
+// import Carro from "./model/carro.js";
+// import Moto from "./model/moto.js";
+// import Animal from "./model/animal.js"
+import Cachorro from "./model/cachorro.js"
+import Gato from "./model/gato.js"
 
-    get marca() { return this.#marca}
+// const auto = new Automovel();
+// console.log(auto);
+// console.log(typeof auto);
+// console.log(Object.getPrototypeOf(auto));
 
-    set marca(marca) { this.#marca = marca}
+// const onix = new Carro();
+// console.log(onix);
+// console.log(typeof onix);
+// console.log(Object.getPrototypeOf(onix));
 
-    get modelo() { return this.#modelo}
+// const pcx = new Moto();
+// console.log(pcx);
+// console.log(typeof pcx);
+// console.log(Object.getPrototypeOf(pcx));
 
-    set modelo(modelo) { this.#modelo = modelo}
+// console.log(onix instanceof Automovel);
+// console.log(Carro instanceof Automovel);
 
-    get valor() { return this.#valor}
+const caramelo = new Cachorro("Caramelo", true);
+const garfield = new Gato("Garfield", true);
 
-    set valor(valor) { this.#valor = valor}
+caramelo.fazerSom();
+caramelo.mover();
 
-    get cor() { return this.#cor}
-
-    set cor(cor) { this.#cor = cor}
-
-    get placa() { return this.#placa}
-
-    set placa(placa) { this.#placa = placa}
-
-    get rodas() { return this.#rodas}
-
-    set marca(rodas) { this.#rodas = rodas}
-
-    constructor(marca, modelo, valor, cor, placa, rodas){
-        this.#marca = marca;
-        this.#modelo = modelo;
-        this.#valor = valor;
-        this.#cor = cor;
-        this.#placa = placa;
-        this.#rodas = rodas;
-
-    }
-}
-
-class Carro extends Automovel{
-    #portas;
-
-    get portas() { return this.#portas}
-
-    set portas(portas) {this.#portas = portas}
-
-    constructor( marca, modelo, valor, cor, placa, rodas, portas){
-        super(marca, modelo, valor, cor, placa, rodas);
-        this.#portas = portas;
-    }
-
-}
+garfield.fazerSom();
+garfield.mover();
