@@ -1,59 +1,73 @@
-class pessoa{
-    constructor(nome, idade, cpf){
+class Pessoa {
+    constructor(nome, idade, cpf) {
         this.nome = nome;
         this.idade = idade;
         this.cpf = cpf;
     }
 }
 
-let fulano = new pessoa("fulano", 32, 1234);
-let ciclano = new pessoa("Ciclano", 34, 12345);
-let bulano = new pessoa("Bulano", 54, 123456);
+let fulano = new Pessoa("Fulano", 23, 1234);
+let ciclano = new Pessoa("Ciclano", 32, 4321);
+let beltrano = new Pessoa("Beltrano", 56, 9999);
 
-let arrayPessoa = [fulano, ciclano, bulano]
+let listaPessoas = [fulano, ciclano, beltrano];
 
-
-arrayPessoa.forEach(pessoa =>{
-    console.log(pessoa.nome)
-    console.log(pessoa.idade)
-    console.log(pessoa.cpf)
+listaPessoas.forEach((pessoa) => {
+    console.log(pessoa.nome);
+    console.log(pessoa.idade);
+    console.log(pessoa.cpf);
 });
 
-console.log(arrayPessoa);
+console.log(listaPessoas);
 
-let listaNomes = arrayPessoa.map((pessoa) => {
-    return pessoa.nome
+console.log("Map:")
+let listaNomes = listaPessoas.map((pessoa) => {
+    return pessoa.nome;
 });
-let listaNomes2 = arrayPessoa.map((pessoa) => pessoa.nome);
+let listaNomes2 = listaPessoas.map((pessoa) => pessoa.nome);
 
 console.log(listaNomes);
 console.log(listaNomes2);
 
-let listaPessoasNovas = arrayPessoa.filter((pessoa) => {
+let listaPessoasNovas = listaPessoas.filter((pessoa) => {
     return pessoa.idade < 40;
 });
-let listaPessoasNovas2 = arrayPessoa.filter((pessoa) => pessoa.idade < 40);
 
-console.log(listaPessoasNovas)
-console.log(listaPessoasNovas2)
+console.log("Filter:")
+let listaPessoasNovas2 = listaPessoas.filter((pessoa) => pessoa.idade < 40);
 
-let somaIdades = arrayPessoa.reduce((soma, pessoa) => soma += pessoa.idade, 0);
-let somaIdades2 = arrayPessoa.reduce((soma, pessoa) => {
+console.log(listaPessoasNovas);
+console.log(listaPessoasNovas2);
+
+let somaIdades = listaPessoas.reduce((soma, pessoa) => soma += pessoa.idade, 0);
+
+let somaIdades2 = listaPessoas.reduce((soma, pessoa) => {
     return soma += pessoa.idade;
 }, 0);
 
 console.log(somaIdades);
 console.log(somaIdades2);
+
 /*
 let nomePessoa1 = "Fulano";
-let idadePessoa1 = 43;
+let idadePessoa1 = 23;
 let cpfPessoa1 = 1234;
 
-let nomePessoa2 = "Lulano";
-let idadePessoa2 = 48;
-let cpfPessoa2 = 12345;
+let nomePessoa2 = "Ciclano";
+let idadePessoa2 = 32;
+let cpfPessoa2 = 4321;
 
-let nomePessoa3 = "Bulano";
-let idadePessoa3 = 43;
-let cpfPessoa3 = 123456;
+let nomePessoa3 = "Beltrano";
+let idadePessoa3 = 56;
+let cpfPessoa3 = 9999;
+
+let listaNome = [nomePessoa1, nomePessoa2, nomePessoa3];
+let listaIdade = [idadePessoa1, idadePessoa2, idadePessoa3];
+let listaCpf = [cpfPessoa1, cpfPessoa2, cpfPessoa3];
+
+for (let i = 0; i < listaNome.length; i++) {
+    console.log(listaNome[i]);
+    console.log(listaIdade[i]);
+    console.log(listaCpf[i]);
+}
 */
