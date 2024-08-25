@@ -1,4 +1,4 @@
-export default class imovel{
+export default class Imovel{
     #endereco;
     #preco;
 
@@ -7,4 +7,9 @@ export default class imovel{
 
     get preco() { return this.#preco};
     set preco(preco) { this.#preco = preco};
+
+    constructor(endereco, preco){
+        this.#endereco = endereco;
+        this.#preco = preco;
+    }
 }
