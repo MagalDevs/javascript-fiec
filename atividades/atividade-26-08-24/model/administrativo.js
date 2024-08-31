@@ -13,8 +13,11 @@ export default class Administrativo extends Assistente{
     }
 
     GanhoAnual(){
-        if(this.#turno === "noturno"){
-            return (super.salario * this.#adicionalNoturno) * 12;
+        switch(this.#turno){
+            case "noturno":
+                return super.salario * this.#adicionalNoturno * 12;
+            default:
+                return super.salario * 12;
         }
     }
 }
