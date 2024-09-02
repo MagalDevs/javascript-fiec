@@ -1,0 +1,13 @@
+{
+  "name": "atividade-21-08-24",
+  "version": "1.0.0",
+  "main": "atividade3.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "atividade3.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
