@@ -1,9 +1,5 @@
 async function changeBackgroundColor(element, color) {
-    if (color == "blue") {
-        element.style.backgroundColor = "blue"
-    }else if (color == "green") {
-        element.style.backgroundColor = "green"
-    }
+    element.style.backgroundColor = color
 }
 
 const title = document.getElementById("title");
