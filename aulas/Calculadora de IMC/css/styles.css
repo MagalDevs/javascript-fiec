@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+}
+
+body {
+    background-color: darkslateblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+}
+
+.hide {
+    display: none !important;
+}
+
+.container {
+    min-width: 400px;
+    min-height: 400px;
+    background-color: midnightblue;
+    padding: 2rem;
+}
+
+#imcContainer h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.formsInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.formsControl {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 1rem;
+}
+
+.formsControl label {
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+    color: white;
+}
+
+.formsControl input {
+    padding: 1rem 0.5rem;
+}
+
+.actionControl {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+button {
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    background-color: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+    opacity: 0.9;
+    flex: 1;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+#limparBtn {
+    background-color: grey;
+}
+
+#resultContainer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#imcNumber {
+    font-size: 2.4rem;
+    margin-bottom: 0.6rem;
+}
+
+#imcInfo {
+    font-size: 1.4rem;
+    color: white;
+}
+
+#resultContainer h3 {
+    margin-top: 1rem;
+    color: white;
+}
+
+#imcTable {
+    margin: 1.5rem 0;
+    font-size: 0.8rem;
+}
+
+.tableHeader {
+    font-weight: bold;
+    color: white;
+}
+
+.tableHeader, .tableData {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid gray;
+}
+
+.tableHeader h4, .tableData p {
+    flex: 1;
+}
+
+.tableHeader h4:nth-child(3), .tableData p:nth-child(3) {
+    max-width: 80px;
+}
+
+#voltarBtn {
+    align-self: center;
+}
+
+.good {
+    color: greenyellow;
+}
+
+.low {
+    color: yellow;
+}
+
+.medium {
+    color: orangered;
+}
+
+.high {
+    color: red;
+}
