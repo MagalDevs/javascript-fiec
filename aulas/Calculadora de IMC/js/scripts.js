@@ -81,6 +81,10 @@ function validInput(text){
     return text.replace(/[^0-9,]/g, "")
 }
 
+function calcularIMC(height, weight) {
+ return (weight / (height * height)).toFixed(1);
+}
+
 createTable(data)
 
 // Eventos
@@ -94,4 +98,17 @@ limparBtn.addEventListener("click", (event) => {
         const updatedValue = validInput(event.target.value)
         event.target.value = updatedValue;
     });
+});
+
+calcularBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  const height = +heightInput.value.replace(",", ".");
+  const weight = +weightInput.value.replace(",", ".");
+
+  if(!height ||!weight){
+    return;
+  }
+  const imc = calcularIMC(height, weight);
+
+  createTable(imc)
 });
