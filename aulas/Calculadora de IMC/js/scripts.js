@@ -53,7 +53,7 @@ const voltarBtn = document.querySelector("#voltarBtn")
 function createTable(data){
     data.forEach(item => {
         const div = document.createElement("div");
-        div.classList.add(".tableData");
+        div.classList.add("tableData");
 
         const classification = document.createElement("p")
         classification.innerText = item.classification;
@@ -75,6 +75,9 @@ function createTable(data){
 function clearInputs() {
     heightInput.value = "";
     weightInput.value = "";
+
+    imcNumber.className = "";
+    imcInfo.className = "";
 }
 
 function validInput(text){
@@ -83,6 +86,11 @@ function validInput(text){
 
 function calcularIMC(height, weight) {
  return (weight / (height * height)).toFixed(1);
+}
+
+function showOrHideResult() {
+  imcContainer.classList.toggle("hide")
+  resultContainer.classList.toggle("hide");
 }
 
 createTable(data)
@@ -109,6 +117,47 @@ calcularBtn.addEventListener("click", (event) => {
     return;
   }
   const imc = calcularIMC(height, weight);
+  let info;
 
-  createTable(imc)
+  data.forEach((item) => {
+    if(imc >= item.min && imc <= item.max){
+      info = item.info;
+    }
+  })
+
+  if(!info){
+    return;
+  }
+
+  imcNumber.innerText = imc;
+  imcInfo.innerText = info;
+
+  switch(info){
+    case "Magreza":
+      imcNumber.classList.add("low");
+      imcInfo.classList.add("low");
+      break;
+    case "Normal":
+      imcNumber.classList.add("good");
+      imcInfo.classList.add("good");
+      break;
+    case "Sobrepeso":
+      imcNumber.classList.add("low");
+      imcInfo.classList.add("low");
+      break;
+    case "Obesidade":
+      imcNumber.classList.add("medium");
+      imcInfo.classList.add("medium");
+      break;
+    case "Obesidade grave":
+      imcNumber.classList.add("high");
+      imcInfo.classList.add("high");
+      break;
+  }
+  showOrHideResult();
+});
+
+voltarBtn.addEventListener("click", (event) => {
+  clearInputs();
+  showOrHideResult();
 });
