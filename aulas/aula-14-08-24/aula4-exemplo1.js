@@ -24,10 +24,10 @@ console.log("Map:")
 let listaNomes = listaPessoas.map((pessoa) => {
     return pessoa.nome;
 });
-let listaNomes2 = listaPessoas.map((pessoa) => pessoa.nome);
+let listaIdade = listaPessoas.map((pessoa) => pessoa.idade);
 
 console.log(listaNomes);
-console.log(listaNomes2);
+console.log(listaIdade);
 
 let listaPessoasNovas = listaPessoas.filter((pessoa) => {
     return pessoa.idade < 40;
