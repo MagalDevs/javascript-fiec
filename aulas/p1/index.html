@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="principalContainer" class="hide">
+            <h2>Calculadora de Imposto de renda</h2>
+                <div id="divBotoes">
+                    <button id="pfBtn">Pessoa Física</button>
+                    <button id="pjBtn">Pessoa Jurídica</button>
+                </div>
+        </div>
+        <div id="pfContainer" class="hide">
+            <h2>Dados Pessoa Física:</h2>
+            <form id="pfForm">
+                <div class="formInputs">
+                    <div class="formsControl">
+                        <label for="nomePf">Nome:</label>
+                        <input type="text" id="nomePf" name="nomePf" placeholder="Digite seu nome..."/>
+                    </div>
+                    <div class="formsControl">
+                        <label for="idade">Idade:</label>
+                        <input type="text" id="idade" name="idade" placeholder="Digite sua idade..."/>
+                    </div>
+                    <div class="formsControl">
+                        <label for="nomePf">CPF:</label>
+                        <input type="text" id="cpf" name="cpf" placeholder="111.111.111-11"/>
+                    </div>
+                    <div class="formsControl">
+                        <label for="rendaPf">Renda:</label>
+                        <input type="text" id="rendaPf" name="rendaPf" placeholder="55.000,99"/>
+                    </div>
+                    <div class="formsControl">
+                        <label for="enderecoPf">Endereço:</label>
+                        <input type="text" id="enderecoPf" name="enderecoPf" placeholder="Rua Zero, nº0"/>
+                    </div>
+                </div>
+                <div>
+                    <div class="actionControl">
+                        <button id="calcularPfBtn">Calcular Imposto de Renda</button>
+                        <button id="limparPfBtn">Limpar</button>
+                        <button id="voltarPfBtn">Voltar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="pjContainer" >
+            <h2>Dados Pessoa Jurídica:</h2>
+            <form id="pfForm">
+                <div class="formInputs">
+                    <div class="formsControl">
+                        <label for="nomePj">Nome:</label>
+                        <input type="text" id="nomePj" name="nomePj" placeholder="Digite seu nome..."/>
+                    </div>
+                    <div class="formsControl">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="text" id="cnpj" name="cnpj" placeholder="111.111.111.0001-11"/>
+                    </div>
+                    <div class="formsControl">
+                        <label for="tipo">Tipo de Empresa:</label>
+                        <input type="text" id="tipo" name="tipo" placeholder="(MEI, LTDA, SS, SA)"/>
+                    </div>
+                    <div class="formsControl">
+                        <label for="rendaPj">Renda Bruta:</label>
+                        <input type="text" id="rendaPj" name="rendaPj" placeholder="55.000,99"/>
+                    </div>
+                    <div class="formsControl">
+                        <label for="enderecoPj">Endereço:</label>
+                        <input type="text" id="enderecoPj" name="enderecoPj" placeholder="Rua Zero, nº0"/>
+                    </div>
+                </div>
+                <div>
+                    <div class="actionControl">
+                        <button id="calcularPjBtn">Calcular Imposto de Renda</button>
+                        <button id="limparPjBtn">Limpar</button>
+                        <button id="voltarPjBtn">Voltar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
