@@ -79,28 +79,28 @@ button:hover {
     background-color: grey;
 }
 
-#resultContainer {
+#resultPfContainer, #resultPjContainer {
     text-align: center;
     display: flex;
     flex-direction: column;
 }
 
-#imcNumber {
+#nomePfResult, #nomePjResult {
     font-size: 2.4rem;
     margin-bottom: 0.6rem;
 }
 
-#imcInfo {
+#calculoPfResult, #calculoPjResult {
     font-size: 1.4rem;
     color: white;
 }
 
-#resultContainer h3 {
+#resultPfContainer h3, #resultPjContainer h3 {
     margin-top: 1rem;
     color: white;
 }
 
-#imcTable {
+#pfTable {
     margin: 1.5rem 0;
     font-size: 0.8rem;
 }
@@ -130,6 +130,9 @@ button:hover {
     background-color: green;
 }
 
+#voltarResultPfBtn,  #voltarResultPjBtn{
+    align-self: center;
+}
 .good {
     color: greenyellow;
 }

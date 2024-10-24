@@ -20,9 +20,67 @@ const voltarPfBtn = document.querySelector('#voltarPfBtn');
 const calcularPjBtn = document.querySelector('#calcularPjBtn');
 const limparPjBtn = document.querySelector('#limparPjBtn');
 const voltarPjBtn = document.querySelector('#voltarPjBtn');
+const resultPfContainer = document.querySelector('#resultPfContainer');
+const resultPjContainer = document.querySelector('#resultPjContainer');
+const voltarResultPfBtn = document.querySelector('#voltarResultPfBtn');
+const voltarResultPjBtn = document.querySelector('#voltarResultPjBtn');
+const nomePfResult = document.querySelector('#nomePfResult span');
+const cpfResult = document.querySelector('#cpfResult span');
+const rendaPfResult = document.querySelector('#rendaPfResult span');
+const calculoPf = document.querySelector('#calculoPf span');
+const nomePjResult = document.querySelector('#nomePjResult span');
+const cnpjResult = document.querySelector('#cnpjResult span');
+const tipoResult = document.querySelector('#tipoResult span');
+const rendaPjResult = document.querySelector('#rendaPjResult span');
+const calculoPj = document.querySelector('#calculoPj span');
+const pfTable = document.querySelector('#pfTable');
+
+//PF table data
+
+const data = [
+    {
+        min: 0,
+        max: 1400,
+        renda: "0 a 1400",
+        aliquota: '0%',
+        aliquotaValue: 0,
+        parcela: 0
+    },
+    {
+        min: 1400,
+        max: 2100,
+        renda: "1400.01 a 2100",
+        aliquota: '10%',
+        aliquotaValue: 0.1,
+        parcela: 100
+    },
+    {
+        min: 2100,
+        max: 2800,
+        renda: "2100.01 a 2800",
+        aliquota: '15%',
+        aliquotaValue: 0.15,
+        parcela: 270
+    },
+    {
+        min: 2800,
+        max: 3600,
+        renda: "2800.01 a 3600",
+        aliquota: '25%',
+        aliquotaValue: 0.25,
+        parcela: 500
+    },
+    {
+        min: 3600,
+        max: 100000000000000000000000000000000000000000,
+        renda: "3600.01 a 4200",
+        aliquota: '30%',
+        aliquotaValue: 0.3,
+        parcela: 700
+    },
+]
 
 //funções
-
 function cleanInputs(actual){
     if (actual == "PF"){
         nomePf.value = "";
@@ -54,6 +112,20 @@ function showOrHideResults(actual, next){
         pjContainer.classList.toggle("hide");
         principalContainer.classList.toggle("hide");
         cleanInputs("PJ")
+    }else if(actual == "PF" && next == "resultPf"){
+        pfContainer.classList.toggle("hide");
+        resultPfContainer.classList.toggle("hide");
+    } else if(actual == "PJ" && next == "resultPj"){
+        pjContainer.classList.toggle("hide");
+        resultPjContainer.classList.toggle("hide");
+    } else if(actual == "resultPf" && next == "principal"){
+        resultPfContainer.classList.toggle("hide");
+        principalContainer.classList.toggle("hide");
+        cleanInputs("PF");
+    } else if(actual == "resultPj" && next == "principal"){
+        resultPjContainer.classList.toggle("hide");
+        principalContainer.classList.toggle("hide");
+        cleanInputs("PJ");
     }
 }
 
@@ -73,6 +145,29 @@ function validRendaInputs(value){
     return value.replace(/[^0-9,]/g, "")
 }
 
+function createTable(data){
+    data.forEach((item) => {
+        const div = document.createElement('div');
+        div.classList.add('tableData');
+
+        const renda = document.createElement('p')
+        renda.innerText = item.renda;
+
+        const aliquota = document.createElement('p')
+        aliquota.innerText = item.aliquota;
+
+        const parcela = document.createElement('p')
+        parcela.innerText = "R$" + item.parcela;
+
+        div.appendChild(renda);
+        div.appendChild(aliquota);
+        div.appendChild(parcela);
+
+        pfTable.appendChild(div);
+    })
+}
+
+createTable(data);
 
 //eventos
 
@@ -105,9 +200,6 @@ voltarPjBtn.addEventListener('click', (event) =>{
     event.preventDefault();
     showOrHideResults("PJ", "principal");
 
-    if(tipo.value != "MEI" && tipo.value != "LTDA" && tipo.value != "SS" && tipo.value != "SA"){
-        alert("Tipo de empresa inválido! Permitido somente MEI, LTDA, SS e SA");
-    }
 })
 
 calcularPfBtn.addEventListener('click', (event) =>{
@@ -118,7 +210,21 @@ calcularPfBtn.addEventListener('click', (event) =>{
         return;
     }
 
-    showOrHideResults("PF", "principal");
+    let impostoValue;
+
+    data.forEach((item) => {
+        if(rendaPf.value >= item.min && rendaPf.value <= item.max){
+            impostoValue = (rendaPf.value * item.aliquotaValue) - item.parcela;
+        }
+    });
+
+    nomePfResult.innerText = nomePf.value;
+    cpfResult.innerText = cpf.value;
+    rendaPfResult.innerText = rendaPf.value;
+    calculoPf.innerText = impostoValue
+
+
+    showOrHideResults("PF", "resultPf");
 })
 
 calcularPjBtn.addEventListener('click', (event) =>{
@@ -129,19 +235,43 @@ calcularPjBtn.addEventListener('click', (event) =>{
         return;
     }
 
-    showOrHideResults("PJ", "principal");
+    if(tipo.value != "MEI" && tipo.value != "LTDA" && tipo.value != "SS" && tipo.value != "SA"){
+        alert("Tipo de empresa inválido! Permitido somente MEI, LTDA, SS e SA");
+    }
+
+    nomePjResult.innerText = nomePj.value;
+    cnpjResult.innerText = cnpj.value;
+    tipoResult.innerText = tipo.value;
+    rendaPjResult.innerText = rendaPj.value;
+    calculoPj.innerText = rendaPj.value * 0.1;
+
+    showOrHideResults("PJ", "resultPj");
 })
 
-[idade,cpf, cnpj].forEach((item) => {
+voltarResultPfBtn.addEventListener('click', (event) =>{
+    event.preventDefault();
+    showOrHideResults("resultPf", "principal");
+})
+
+voltarResultPjBtn.addEventListener('click', (event) =>{
+    event.preventDefault();
+    showOrHideResults("resultPj", "principal");
+})
+
+const camposNumericos = [idade, cpf, cnpj];
+const camposRenda = [rendaPf, rendaPj];
+
+
+camposNumericos.forEach((item) => {
     item.addEventListener('input', (event) => {
         const updateValue = validNumericInputs(event.target.value);
         event.target.value = updateValue;  
-    })
+    });
 });
 
-[idade,cpf, cnpj].forEach((item) => {
+camposRenda.forEach((item) => {
     item.addEventListener('input', (event) => {
-      const updateValue = validRendaInputs(event.target.value);
+        const updateValue = validRendaInputs(event.target.value);
         event.target.value = updateValue;  
-    })
+    });
 });
