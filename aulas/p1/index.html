@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de IMC</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/index.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,6 +54,7 @@
                 </div>
             </form>
         </div>
+
         <div id="pjContainer" class="hide">
             <h2>Dados Pessoa Jurídica:</h2>
             <form id="pfForm">
@@ -103,14 +105,12 @@
             </div>
             <button id="voltarResultPfBtn">Voltar</button>
         </div>
-
         <div id="resultPjContainer" class="hide">
             <p id="nomePjResult">Nome: <span></span></p>
             <p id="cnpjResult">CNPJ: <span></span></p>
             <p id="tipoResult">Tipo: <span></span></p>
             <p id="rendaPjResult">Renda Bruta: <span></span></p>
             <p id="calculoPj">Imposto a Pagar: <span></span></p>
-            <h3>Confira os dados para o cálculo:</h3>
             <button id="voltarResultPjBtn">Voltar</button>
         </div>
     </div>

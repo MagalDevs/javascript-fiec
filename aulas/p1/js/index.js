@@ -169,6 +169,37 @@ function createTable(data){
 
 createTable(data);
 
+async function validCpf(cpf){
+    try {
+        let url = `https://api.invertexto.com/v1/validator?token=15772|28zq9TbjIuNI224TKotvlBvDIFEocgT4&value=${cpf}&type=cpf`
+        const response = await axios.get(url)
+        if(response.data.valid){
+            console.log("CPF Válido!");
+            return true;
+        }else{
+            alert("CPF Inválido!");
+            return false;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function validCnpj(cnpj){
+    try {
+        let url = `https://api.invertexto.com/v1/validator?token=15772|28zq9TbjIuNI224TKotvlBvDIFEocgT4&value=${cnpj}&type=cnpj`;
+        const response = await axios.get(url)
+        if(response.data.valid){
+            console.log("CNPJ Válido!");
+            return true;
+        }else{
+            alert("CNPJ Inválido!");
+            return false;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 //eventos
 
 pfBtn.addEventListener('click', (event) => {
@@ -202,11 +233,15 @@ voltarPjBtn.addEventListener('click', (event) =>{
 
 })
 
-calcularPfBtn.addEventListener('click', (event) =>{
+calcularPfBtn.addEventListener('click', async (event) =>{
     event.preventDefault();
 
     if(validPfInputs()){
         alert("Preencha todos os campos");
+        return;
+    }
+
+    if(!await validCpf(cpf.value)){
         return;
     }
 
@@ -223,11 +258,18 @@ calcularPfBtn.addEventListener('click', (event) =>{
     rendaPfResult.innerText = rendaPf.value;
     calculoPf.innerText = impostoValue
 
+    if (impostoValue < 500) {
+        calculoPf.classList.add("good")
+    }else if(impostoValue >= 500 && impostoValue <= 2500){
+        calculoPf.classList.add("low")
+    }else{
+        calculoPf.classList.add("high")
+    }
 
     showOrHideResults("PF", "resultPf");
 })
 
-calcularPjBtn.addEventListener('click', (event) =>{
+calcularPjBtn.addEventListener('click', async (event) =>{
     event.preventDefault();
 
     if(validPjInputs()){
@@ -237,13 +279,28 @@ calcularPjBtn.addEventListener('click', (event) =>{
 
     if(tipo.value != "MEI" && tipo.value != "LTDA" && tipo.value != "SS" && tipo.value != "SA"){
         alert("Tipo de empresa inválido! Permitido somente MEI, LTDA, SS e SA");
+        return;
     }
+
+    if(!await validCnpj(cnpj.value)){
+        return;
+    }
+
+    let impostoValue = rendaPj.value * 0.1;
 
     nomePjResult.innerText = nomePj.value;
     cnpjResult.innerText = cnpj.value;
     tipoResult.innerText = tipo.value;
     rendaPjResult.innerText = rendaPj.value;
-    calculoPj.innerText = rendaPj.value * 0.1;
+    calculoPj.innerText = impostoValue;
+
+    if (impostoValue < 500) {
+        calculoPj.classList.add("good")
+    }else if(impostoValue >= 500 && impostoValue < 2500){
+        calculoPj.classList.add("low")
+    }else{
+        calculoPj.classList.add("high")
+    }
 
     showOrHideResults("PJ", "resultPj");
 })
